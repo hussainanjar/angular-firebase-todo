@@ -1,0 +1,28 @@
+<div id="todoapp">
+    <header>
+        <h1>Todos</h1>
+        <form id="todo-form" data-ng-submit="addTodo()">
+            <input id="new-todo" type="text" placeholder="What needs to be done?" data-ng-model="newTodo">
+        </form>
+    </header>
+
+    <section id="main" data-ng-show="todos.todoList.length">
+        <input id="toggle-all" type="checkbox" data-ng-click="markAllDone()" data-ng-model="todos.markAllDone" >
+        <label for="toggle-all">Mark all as complete</label>
+        <ul id="todo-list">
+            <li data-ng-repeat="todo in todos.todoList" ng-class="{done: todo.done, editing: todo.editing}" data-ng-dblclick="editTodo($index)">
+                <div class="view">
+                    <input class="toggle" type="checkbox" data-ng-model="todo.done" data-ng-click="toggleDone($index)">
+                    <label>{{todo.title}}</label>
+                </div>
+                <input class="edit" type="text" data-ng-model="todo.title" ng-blur="closeEditTodo($index)" ng-enter="closeEditTodo($index)">
+            </li>
+        </ul>
+    </section>
+
+    <footer data-ng-show="todos.todoList.length">
+        <a id="clear-completed" data-ng-click="clearDone()">Clear {{todos.doneCount}} completed item</a>
+        <div class="todo-count"><strong>{{todos.todoList.length - todos.doneCount}}</strong> item left</div>
+    </footer>
+
+</div>
