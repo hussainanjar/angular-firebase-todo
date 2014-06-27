@@ -8,6 +8,8 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+    
+   //require('grunt-build-control')(grunt);
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -20,6 +22,8 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
+    
+ //grunt.loadNpmTasks('grunt-build-control');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -350,6 +354,23 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+      
+      
+      
+    buildcontrol: {
+        options: {
+          dir: 'dist',
+          commit: true,
+          push: true,
+          message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+        },
+        pages: {
+          options: {
+            remote: 'git@github.com:hussainanjar/angular-firebase-todo.git',
+            branch: 'gh-pages'
+          }
+        }
     }
   });
 
