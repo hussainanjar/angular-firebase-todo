@@ -1,21 +1,20 @@
-/*global console */
 (function (angular) {
     'use strict';
 
     /**
      * @ngdoc function
-     * @name todosApp.controller:AboutCtrl
+     * @name todosApp.directives:enter-directive
      * @description
-     * # TodosCtrl
-     * Controller of the todosApp
+     * # todoEnter
+     * Enter Directive
      */
     angular.module('todosApp')
-        .directive('ngEnter', function () {
+        .directive('todoEnter', function () {
             return function (scope, element, attrs) {
-                element.bind("keydown keypress", function (event) {
+                element.bind('keydown keypress', function (event) {
                     if (event.which === 13) {
                         scope.$apply(function () {
-                            scope.$eval(attrs.ngEnter);
+                            scope.$eval(attrs.todoEnter);
                         });
 
                         event.preventDefault();
